@@ -11,11 +11,7 @@ const io = new Server(server);
 const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, '../..', 'client/dist')));
-app.use(express.static('public'));
-
-app.get('/', (req: any, res: any) => {
-  res.sendFile(__dirname + '/public/index.html');
-});
+app.use(express.static(__dirname + '/public'));
 
 io.on('connection', (socket) => {
   console.log('a user connected');

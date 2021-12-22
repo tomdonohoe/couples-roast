@@ -44,3 +44,12 @@ $ make lint-fix-server
 
 $ make lint-fix-client
 ```
+
+## Deploying
+
+The app is deploying to Heroku. The `package.json` file in the root is used by Heroku. Heroku uses `yarn run build` to build client and server apps. Then starts server with `yarn run start`.
+
+```bash
+# deploy to heroku
+$ make deploy
+```

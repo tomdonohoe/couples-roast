@@ -16,3 +16,31 @@ Topics:
 - Sadness (couple photos of sadness.. e.g. breakups, )
 - Fear (couples photos of fear... )
 - Anger (couple photos of conflict.. e.g. fights, mood swings, )
+
+## Getting Started
+
+```bash
+# install
+$ cd server && yarn install 
+$ cd client && yarn install
+
+# start app
+$ make start
+
+# rebuild client assets
+$ make restart
+```
+
+## Useful commands
+
+```bash
+# code formatting
+$ make format-fix-server
+
+$ make format-fix-client
+
+# linting
+$ make lint-fix-server
+
+$ make lint-fix-client
+```

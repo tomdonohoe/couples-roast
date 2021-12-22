@@ -62,3 +62,7 @@ restart:
 	make build-client
 	cd server && yarn run start:dev
 .PHONY: restart
+
+deploy:
+	yarn run deploy
+.PHONY: deploy

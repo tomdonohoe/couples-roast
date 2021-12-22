@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "start:dev": "ts-node-dev ./src/index.ts",
-    "build": "tsc",
+    "copy-static-files": "cp -R ./src/public/ ./dist/public",
+    "prebuild": "rimraf dist",
+    "build": "tsc && yarn run copy-static-files",
     "start": "yarn run build && node ./dist/index.js",
     "format": "prettier --write \"src/**/*.ts\"",
     "format:nofix": "prettier --check \"src/**/*.ts\"",
@@ -28,6 +30,7 @@
   "dependencies": {
     "express": "^4.17.2",
     "pexels": "^1.3.0",
+    "rimraf": "^3.0.2",
     "socket.io": "^4.4.0"
   }
 }

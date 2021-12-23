@@ -1,3 +1,32 @@
 h1 {
-    color: red;
+    color: green;
+}
+
+/* CREATE GAME */
+.create-game {
+    display: none;
+}
+
+/* JOIN GAME */
+.join-game {
+    display: none;
+}
+
+/* INVITE FRIENDS */
+.invite-friends {
+    display: none;
+}
+
+/* PLAYERS */
+.players {
+    display: none;
+}
+
+/* START GAME */
+.start-game__ready{
+    display: none;
+}
+
+.start-game__wait {
+    display: none;
 }

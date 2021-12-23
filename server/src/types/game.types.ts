@@ -18,7 +18,3 @@ export interface GameCreatedData {
 export interface GameStartData {
   gameId: string;
 }
-
-export interface GameState {
-  players: Player[];
-}

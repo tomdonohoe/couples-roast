@@ -6,9 +6,55 @@
   </head>
   <body>
     <div class="couples-roast">
-        <h1>Couples Roast</h1>
-    </div>
 
+      <h1>Couples Roast</h1>
+
+      <!-- Create a new game -->
+      <div class="create-game">
+        <form class="create-game__form">
+          <h1 class="create-game__heading">Start a new game:</h1>
+          <input class="create-game__name" type="text" placeholder="enter your name" />
+          <button>Create Game</button>
+        </form>
+      </div>
+
+      <!-- Join a game -->
+      <div class="join-game">
+        <form class="join-game__form">
+          <h1 class="join-game__heading">Join game <span class="join-game__gameId"></span>:</h1>
+          <input class="join-game__name" type="text" placeholder="enter your name" />
+          <button>Join Game</button>
+        </form>
+      </div>
+
+      <!-- Invite your friends -->
+      <div class="invite-friends">
+        <h1 class="invite-friends__heading">Invite your friends!</h1>
+        <p>Share this link to invite people to play:</p>
+        <div>
+          <span class="invite-friends__link"></span>
+          <input class="invite-friends__copyBtn" type="button" value="Copy link" />
+        </div>
+      </div>
+
+      <!-- Connected Players -->
+      <div class="players">
+        <h1 class="players__heading">Players:</h1>
+        <ul class="players__list"></ul>
+      </div>
+
+      <!-- Start Game or Wait -->
+      <div class="start-game">
+        <div class="start-game__ready">
+          <h2>Everybody Ready to Roast?</h2>
+          <button class="start-game__btn">Start Game</button>
+        </div>
+        <div class="start-game__wait">
+          <p>Waiting for <span class="start-game__host"></span> to start the game.</p>
+        </div>
+      </div>
+
+    </div>
     <script src="bundle.js"></script>
   </body>
 </html>

@@ -1,36 +1,34 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export const generateGameId = (): string => {
-    return uuidv4();
-}
+  return uuidv4();
+};
 
 export const getGameIdFromUrl = (): string | null => {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('gameId');
-}
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('gameId');
+};
 
-export const isGuest = (): boolean =>  {
-    const queryGameId = getGameIdFromUrl();
-    console.log(queryGameId);
-    return Boolean(queryGameId);
-}
+export const isGuest = (): boolean => {
+  const queryGameId = getGameIdFromUrl();
+  return Boolean(queryGameId);
+};
 
-export const isHost = (): boolean =>  {
-    const queryGameId = getGameIdFromUrl();
-    console.log(queryGameId);
-    return !Boolean(queryGameId);
-}
+export const isHost = (): boolean => {
+  const queryGameId = getGameIdFromUrl();
+  return !Boolean(queryGameId);
+};
 
 export const linkGenerator = (windowLocation: Location, gameId: string) => {
-    return `${windowLocation.protocol}//${windowLocation.host}${windowLocation.pathname}?gameId=${gameId}`;
-}
+  return `${windowLocation.protocol}//${windowLocation.host}${windowLocation.pathname}?gameId=${gameId}`;
+};
 
 export const handleCopyLinkClick = (event: any) => {
-    const link = event.target.getAttribute("data-copy-link");
+  const link = event.target.getAttribute('data-copy-link');
 
-    if (!link) {
-        return;
-    }
+  if (!link) {
+    return;
+  }
 
-    navigator.clipboard.writeText(link);
-}
+  navigator.clipboard.writeText(link);
+};

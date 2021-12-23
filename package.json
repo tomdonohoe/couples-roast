@@ -11,6 +11,8 @@
     "build:server": "cd server && yarn install && yarn run build",
     "build": "yarn run build:client && yarn run build:server",
     "start": "node ./server/dist/index.js",
+    "preheroku-local": "yarn run build:client && yarn run build:server",
+    "heroku-local": "heroku local web",
     "deploy": "git push heroku master"
   }
 }

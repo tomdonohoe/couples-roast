@@ -50,7 +50,11 @@ lint-fix-server:
 ## App
 ################################################################
 
-start:
+start-client:
+	cd client && yarn run start:dev
+.PHONY: start-client
+
+start-server:
 	cd server && yarn run start:dev
 .PHONY: start
 
@@ -58,10 +62,9 @@ start-prod:
 	cd server && yarn run start
 .PHONY: start-prod
 
-restart:
-	make build-client
-	cd server && yarn run start:dev
-.PHONY: restart
+heroku-local:
+	yarn run heroku-local
+PHONY: heroku-local
 
 deploy:
 	yarn run deploy

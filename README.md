@@ -24,12 +24,14 @@ Topics:
 $ cd server && yarn install 
 $ cd client && yarn install
 
-# start app
-$ make start
+# start client app in watch mode
+$ make start-client
 
-# rebuild client assets
-$ make restart
+# start server app in watch mode
+$ make start-server
 ```
+
+Starting both client and server gives you code reloading during development.
 
 ## Useful commands
 
@@ -50,6 +52,10 @@ $ make lint-fix-client
 The app is deploying to Heroku. The `package.json` file in the root is used by Heroku. Heroku uses `yarn run build` to build client and server apps. Then starts server with `yarn run start`.
 
 ```bash
+
+# test app in heroku local dev server
+$ make heroku-local
+
 # deploy to heroku
 $ make deploy
 ```

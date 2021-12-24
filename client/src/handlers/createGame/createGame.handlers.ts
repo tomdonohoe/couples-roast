@@ -47,9 +47,11 @@ const onGameCreated = (data: GameCreatedData, game: Game, socket: Socket) => {
   const { players } = game.getGameState();
   players.push(player);
 
+  console.log(game);
+
   hideCreateGameSection();
   initialiseInviteFriends(game);
-  initialiseConnectedPlayers(game);
+  initialiseConnectedPlayers(game, socket);
   initialiseStartGame(game, socket);
 };
 

@@ -8,9 +8,17 @@ const startGameSectionReady: HTMLElement =
   document.querySelector('.start-game__ready');
 const startGameSectionBtn: HTMLElement =
   document.querySelector('.start-game__btn');
+const startGameSectionWait: HTMLElement =
+  document.querySelector('.start-game__wait');
+const startGameSectionHost: HTMLElement =
+  document.querySelector('.start-game__host');
 
 const showStartGameSectionReady = (): void => {
   startGameSectionReady.style.display = 'block';
+};
+
+const showStartGameSectionWait = (): void => {
+  startGameSectionWait.style.display = 'block';
 };
 
 const startGame = (socket: Socket, game: Game): void => {
@@ -21,7 +29,12 @@ const startGame = (socket: Socket, game: Game): void => {
   socket.emit(GAME_START, gameStartData);
 };
 
-export const initialiseStartGame = (game: Game, socket: Socket) => {
+const waitForHostToStartGame = (hostFriendlyName: string) => {
+  showStartGameSectionWait();
+  startGameSectionHost.textContent = hostFriendlyName;
+};
+
+export const initialiseStartGame = (game: Game, socket?: Socket) => {
   const { isHost } = game.getPlayer();
 
   if (isHost) {
@@ -30,6 +43,6 @@ export const initialiseStartGame = (game: Game, socket: Socket) => {
       startGame(socket, game),
     );
   } else {
-    // to do wait for host to start...
+    waitForHostToStartGame(game.getHost().friendlyName);
   }
 };

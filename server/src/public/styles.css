@@ -30,3 +30,7 @@ h1 {
 .start-game__wait {
     display: none;
 }
+
+.game-starting {
+    display: none;
+}

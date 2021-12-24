@@ -4,6 +4,8 @@ import { Game } from '../../common/Game';
 import { GAME_START } from '../../constants/event.constants';
 import { GameStartData } from '../../types/game.types';
 
+const startGameSection: HTMLElement =
+  document.querySelector('.start-game');
 const startGameSectionReady: HTMLElement =
   document.querySelector('.start-game__ready');
 const startGameSectionBtn: HTMLElement =
@@ -12,6 +14,10 @@ const startGameSectionWait: HTMLElement =
   document.querySelector('.start-game__wait');
 const startGameSectionHost: HTMLElement =
   document.querySelector('.start-game__host');
+
+const hideStartGameSection = (): void => {
+    startGameSection.style.display = 'none';
+};
 
 const showStartGameSectionReady = (): void => {
   startGameSectionReady.style.display = 'block';
@@ -46,3 +52,7 @@ export const initialiseStartGame = (game: Game, socket?: Socket) => {
     waitForHostToStartGame(game.getHost().friendlyName);
   }
 };
+
+export const removeStartGame = () => {
+    hideStartGameSection();
+}

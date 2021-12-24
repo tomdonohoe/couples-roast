@@ -4,6 +4,7 @@ import { Game } from '../common/Game';
 import { isHost } from '../helpers/game.helpers';
 import { initialiseCreateGame } from './createGame/createGame.handlers';
 import { initialiseJoinGame } from './joinGame/joinGame.handlers';
+import { initialiseGameStarting} from './gameStarting/gameStarting.handlers';
 
 export const initialiseGameHandlers = (game: Game, socket: Socket) => {
   const shouldRenderForHost = isHost();
@@ -13,4 +14,6 @@ export const initialiseGameHandlers = (game: Game, socket: Socket) => {
   } else {
     initialiseJoinGame(game, socket);
   }
+
+  initialiseGameStarting(socket, game);
 };

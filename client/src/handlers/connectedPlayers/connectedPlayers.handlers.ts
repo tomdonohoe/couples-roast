@@ -1,5 +1,8 @@
+import { Socket } from 'socket.io-client';
+
 import { Game } from '../../common/Game';
-import { Player } from '../../types/game.types';
+import { GAME_NEW_PLAYER_JOINED } from '../../constants/event.constants';
+import { GameNewPlayerJoinedData, Player } from '../../types/game.types';
 
 const playersSection: HTMLElement = document.querySelector('.players');
 const playersSectionList: HTMLElement =
@@ -25,8 +28,27 @@ const addConnectedPlayers = (players: Player[]): void => {
   }
 };
 
-export const initialiseConnectedPlayers = (game: Game) => {
+const addConnectedPlayer = (player: Player): void => {
+  if (!player) {
+    return;
+  }
+
+  createConnectedPlayerItem(player);
+};
+
+const onNewPlayerJoin = (data: GameNewPlayerJoinedData, game: Game) => {
+  const { players } = game.getGameState();
+  players.push(data.player);
+
+  addConnectedPlayer(data.player);
+};
+
+export const initialiseConnectedPlayers = (game: Game, socket: Socket) => {
   const { players } = game.getGameState();
   showConnectedPlayersSection();
   addConnectedPlayers(players);
+
+  socket.on(GAME_NEW_PLAYER_JOINED, (data: GameNewPlayerJoinedData) =>
+    onNewPlayerJoin(data, game),
+  );
 };

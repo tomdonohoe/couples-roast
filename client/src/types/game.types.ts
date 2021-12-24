@@ -22,3 +22,23 @@ export interface GameStartData {
 export interface GameState {
   players: Player[];
 }
+
+export interface GameJoinData {
+  gameId: string;
+  friendlyName: string;
+}
+
+export interface GameJoinedData {
+  gameId: string;
+  player: Player;
+  host: Player;
+  currentPlayers: Player[];
+}
+
+export interface GameNewPlayerJoinedData {
+  player: Player;
+}
+
+export interface GameJoinErrorData {
+  message: string;
+}

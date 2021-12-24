@@ -18,3 +18,28 @@ export interface GameCreatedData {
 export interface GameStartData {
   gameId: string;
 }
+
+export interface GameJoinData {
+  gameId: string;
+  friendlyName: string;
+}
+
+export interface GameJoinedData {
+  gameId: string;
+  player: Player;
+  host: Player;
+  currentPlayers: Player[];
+}
+
+export interface GameNewPlayerJoinedData {
+  player: Player;
+}
+
+export interface GameJoinError {
+  type: string;
+  didOccur: boolean;
+}
+
+export interface GameJoinErrorData {
+  message: string;
+}

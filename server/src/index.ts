@@ -4,6 +4,7 @@ import http from 'http';
 import path from 'path';
 import { Server, Socket } from 'socket.io';
 
+import { ActiveGames } from './common/ActiveGames';
 import { CONNECTION } from './constants/events.constants';
 import { registerGameHandlers } from './handlers/game.handlers';
 
@@ -12,12 +13,13 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 const PORT = process.env.PORT || 3000;
+const activeGames: ActiveGames = new ActiveGames();
 
 app.use(express.static(path.join(__dirname, '../..', 'client/dist')));
 app.use(express.static(__dirname + '/public'));
 
 const onConnection = (socket: Socket): void => {
-  registerGameHandlers(socket, io);
+  registerGameHandlers(socket, io, activeGames);
 };
 
 io.on(CONNECTION, onConnection);

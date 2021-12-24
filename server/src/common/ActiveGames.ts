@@ -7,8 +7,6 @@ export class ActiveGames {
 
   public isGameIdActive(gameId: string): boolean {
     const isGameActive = this.activeGames.get(gameId);
-    console.log('isGameIdActive: ');
-    console.log(isGameActive);
 
     if (isGameActive) {
       return true;
@@ -24,4 +22,4 @@ export class ActiveGames {
   public deleteGameId(gameId: string): void {
     this.activeGames.delete(gameId);
   }
-}
+};

@@ -30,7 +30,7 @@ const startGame = (socket: Socket, game: Game): void => {
 };
 
 const waitForHostToStartGame = (hostFriendlyName: string) => {
-  startGameSectionWait.style.display = 'block';
+  showStartGameSectionWait();
   startGameSectionHost.textContent = hostFriendlyName;
 };
 
@@ -43,7 +43,6 @@ export const initialiseStartGame = (game: Game, socket?: Socket) => {
       startGame(socket, game),
     );
   } else {
-    showStartGameSectionWait();
     waitForHostToStartGame(game.getHost().friendlyName);
   }
 };

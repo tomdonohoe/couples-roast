@@ -1,5 +1,5 @@
-import { Game } from '../../common/Game';
-import { handleCopyLinkClick, linkGenerator } from '../../helpers/game.helpers';
+import { Game } from '../../../common/Game';
+import { handleCopyLinkClick, linkGenerator } from '../../../helpers/game.helpers';
 
 const inviteFriendsSection: HTMLElement =
   document.querySelector('.invite-friends');

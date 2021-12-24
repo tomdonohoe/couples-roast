@@ -1,8 +1,8 @@
 import { Socket } from 'socket.io-client';
 
-import { Game } from '../../common/Game';
-import { GAME_START } from '../../constants/event.constants';
-import { GameStartData } from '../../types/game.types';
+import { Game } from '../../../common/Game';
+import { GAME_START } from '../../../constants/event.constants';
+import { GameStartData } from '../../../types/game.types';
 
 const startGameSection: HTMLElement =
   document.querySelector('.start-game');

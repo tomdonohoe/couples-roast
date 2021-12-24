@@ -1,3 +1,4 @@
+// Game Events
 export const CONNECTION = 'connection';
 export const GAME_CREATE = 'gameCreate';
 export const GAME_CREATED = 'gameCreated';
@@ -9,3 +10,8 @@ export const GAME_NEW_PLAYER_JOINED = 'gameNewPlayerJoined';
 export const GAME_FULL = 'gameFull';
 export const GAME_ALREADY_STARTED = 'gameAlreadyStarted';
 export const GAME_JOIN_NO_ERRORS = 'gameJoinNoErrors';
+export const GAME_BEGIN_ROUNDS = 'gameBeginRounds';
+
+// Round Events
+export const ROUND_BEGIN = 'roundBegin';
+export const ROUND_START = 'roundStart';

@@ -8,3 +8,8 @@ export const GAME_JOINED = 'gameJoined';
 export const GAME_NEW_PLAYER_JOINED = 'gameNewPlayerJoined';
 export const GAME_FULL = 'gameFull';
 export const GAME_ALREADY_STARTED = 'gameAlreadyStarted';
+export const GAME_BEGIN_ROUNDS = 'gameBeginRounds';
+
+// Round Events
+export const ROUND_BEGIN = 'roundBegin';
+export const ROUND_START = 'roundStart';

@@ -9,6 +9,7 @@ export class Game {
   constructor() {
     this.gameState = {
       players: [],
+      rounds: [],
     };
   }
 

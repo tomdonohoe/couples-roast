@@ -32,3 +32,8 @@ export const handleCopyLinkClick = (event: any) => {
 
   navigator.clipboard.writeText(link);
 };
+
+export const sleepForSeconds = (seconds: number) => {
+  const ms = seconds * 1000;
+  return new Promise(resolve => setTimeout(resolve, ms));
+};

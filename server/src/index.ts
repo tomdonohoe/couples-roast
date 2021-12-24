@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+dotenv.config();
 import express from 'express';
 import http from 'http';
 import path from 'path';
@@ -7,8 +8,8 @@ import { Server, Socket } from 'socket.io';
 import { ActiveGames } from './common/ActiveGames';
 import { CONNECTION } from './constants/events.constants';
 import { registerGameHandlers } from './handlers/game.handlers';
+import { pexelsGetPhotoById } from './api/controllers/pexels.controllers';
 
-dotenv.config();
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
@@ -23,6 +24,8 @@ const onConnection = (socket: Socket): void => {
 };
 
 io.on(CONNECTION, onConnection);
+
+app.use('/api/pexels/photo/:id', pexelsGetPhotoById);
 
 server.listen(PORT, () => {
   console.log(`listening on *:${PORT}`);

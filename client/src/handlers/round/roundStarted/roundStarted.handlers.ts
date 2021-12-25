@@ -15,6 +15,10 @@ const showRoundSection = (): void => {
   roundSection.style.display = 'block';
 };
 
+const hideRoundSection = (): void => {
+  roundSection.style.display = 'none';
+};
+
 const onRoundStarted = (data: RoundStartData, socket: Socket, game: Game) => {
   const { gameState, round } = data;
   const player = game.getPlayer();
@@ -46,4 +50,8 @@ export const initialiseRoundStarted = (game: Game, socket: Socket) => {
   socket.on(ROUND_STARTED, (data: RoundStartData) =>
     onRoundStarted(data, socket, game),
   );
+};
+
+export const removeRoundStarted = (): void => {
+  hideRoundSection();
 };

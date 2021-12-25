@@ -1,10 +1,13 @@
 import { Photo } from './api.types';
 import { GameState, Player } from './game.types';
+import { PlayerVote } from './voting.types';
 
 export interface Round {
   number: number;
   photo: Photo;
   captions: SubmittedPlayerCaption[];
+  votes: PlayerVote[];
+  results: RoundResults[];
 }
 
 export interface RoundBeginData {
@@ -35,4 +38,9 @@ export interface RoundEndedData {
   gameId: string;
   round: number;
   gameState: GameState;
+}
+
+export interface RoundResults {
+  player: Player;
+  points: number;
 }

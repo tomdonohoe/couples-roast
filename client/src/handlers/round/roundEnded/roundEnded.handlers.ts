@@ -17,21 +17,21 @@ const waitForRoundEnd = async (round: number, game: Game, socket: Socket) => {
         () => captions.length === players.length,
         DEFAULT_TIMEOUT_MS,
       );
+
+      const roundEndedData: RoundEndedData = {
+        gameId: gameId,
+        round: round,
+        gameState: game.getGameState(),
+      };
+
+      console.log('round ending...');
+      console.log(roundEndedData);
+      socket.emit(ROUND_ENDED, roundEndedData);
     } catch (err) {
       console.log(err);
       // can flag players who didn't submit here....
     }
   }
-
-  const roundEndedData: RoundEndedData = {
-    gameId: gameId,
-    round: round,
-    gameState: game.getGameState(),
-  };
-
-  console.log('round ending...');
-  console.log(roundEndedData);
-  socket.emit(ROUND_ENDED, roundEndedData);
 };
 
 export const initialiseRoundEnded = async (

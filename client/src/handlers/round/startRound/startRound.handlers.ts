@@ -4,7 +4,6 @@ import { Game } from '../../../common/Game';
 import {
   ROUND_BEGIN,
   ROUND_START,
-  ROUND_STARTED,
 } from '../../../constants/event.constants';
 import { PHOTOS } from '../../../constants/photo.constants';
 import { getPhotoById } from '../../../helpers/api.helpers';
@@ -31,6 +30,8 @@ const onRoundBegin = async (
     number: round,
     photo: photo,
     captions: [],
+    votes: [],
+    results: [],
   };
 
   // add current round to gameState

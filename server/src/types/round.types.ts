@@ -30,3 +30,9 @@ export interface RoundPlayerCaption {
   host: Player;
   caption: string;
 }
+
+export interface RoundEndedData {
+  gameId: string;
+  round: number;
+  gameState: GameState;
+}

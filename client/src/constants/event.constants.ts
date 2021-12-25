@@ -17,3 +17,9 @@ export const ROUND_STARTED = 'roundStarted';
 export const ROUND_PLAYER_CAPTION = 'roundPlayerCaption';
 export const ROUND_SUBMITTED_PLAYER_CAPTION = 'roundSubmittedPlayerCaption';
 export const ROUND_ENDED = 'roundEnded';
+
+// Voting Events
+export const VOTING_START = 'votingStart';
+export const VOTING_PLAYER_VOTE = 'votingPlayerVote';
+export const VOTING_SUBMITTED_PLAYER_VOTE = 'votingSubmittedPlayerVote';
+export const VOTING_END = 'votingEnd';

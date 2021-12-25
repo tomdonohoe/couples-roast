@@ -35,5 +35,5 @@ export const handleCopyLinkClick = (event: any) => {
 
 export const sleepForSeconds = (seconds: number) => {
   const ms = seconds * 1000;
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 };

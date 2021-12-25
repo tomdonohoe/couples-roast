@@ -5,11 +5,11 @@ import http from 'http';
 import path from 'path';
 import { Server, Socket } from 'socket.io';
 
+import { pexelsGetPhotoById } from './api/controllers/pexels.controllers';
 import { ActiveGames } from './common/ActiveGames';
 import { CONNECTION } from './constants/events.constants';
 import { registerGameHandlers } from './handlers/game.handlers';
 import { registerRoundHandlers } from './handlers/round.handlers';
-import { pexelsGetPhotoById } from './api/controllers/pexels.controllers';
 
 const app = express();
 const server = http.createServer(app);

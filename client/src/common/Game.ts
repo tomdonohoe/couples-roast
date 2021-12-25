@@ -46,37 +46,38 @@ export class Game {
   }
 
   public waitUntil(condition: () => boolean, timeout: number) {
-    return new Promise((res: (value: string) => void, rej: (reason: string) => void) => {
-
+    return new Promise(
+      (res: (value: string) => void, rej: (reason: string) => void) => {
         if (condition()) {
-            console.log('condition met!')
-            res('condition met!');
-            return;
+          console.log('condition met!');
+          res('condition met!');
+          return;
         }
 
         let elapsed = 0;
         const pollFrequency = 10;
-        let poll = setInterval(() => {
-            console.log('polling!')
-            if (condition()) {
-              console.log('condition met!')
-                clearInterval(poll);
-                res('condition met!');
-                return;
-            }
+        const poll = setInterval(() => {
+          console.log('polling!');
+          if (condition()) {
+            console.log('condition met!');
+            clearInterval(poll);
+            res('condition met!');
+            return;
+          }
 
-            elapsed += pollFrequency;
+          elapsed += pollFrequency;
 
-            if (!timeout) {
-                return;
-            }
+          if (!timeout) {
+            return;
+          }
 
-            if (elapsed >= timeout) {
-                console.log('time out')
-                clearInterval(poll);
-                rej('Timed out');
-            }
+          if (elapsed >= timeout) {
+            console.log('time out');
+            clearInterval(poll);
+            rej('Timed out');
+          }
         }, pollFrequency);
-    });
+      },
+    );
   }
 }

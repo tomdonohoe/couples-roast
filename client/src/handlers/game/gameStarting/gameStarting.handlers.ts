@@ -1,39 +1,43 @@
 import { Socket } from 'socket.io-client';
 
 import { Game } from '../../../common/Game';
+import {
+  GAME_BEGIN_ROUNDS,
+  GAME_STARTED,
+} from '../../../constants/event.constants';
 import { sleepForSeconds } from '../../../helpers/game.helpers';
-import { GAME_STARTED, GAME_BEGIN_ROUNDS } from '../../../constants/event.constants';
+import { BeginRoundsData } from '../../../types/game.types';
 import { removeInviteFriends } from '../inviteFriends/inviteFriends.handlers';
 import { removeStartGame } from '../startGame/startGame.handlers';
-import { BeginRoundsData } from '../../../types/game.types';
 
-const gameStartingSection: HTMLElement = document.querySelector('.game-starting');
+const gameStartingSection: HTMLElement =
+  document.querySelector('.game-starting');
 
 const showGameStartingSection = (): void => {
-    gameStartingSection.style.display = 'block';
+  gameStartingSection.style.display = 'block';
 };
 
 const hideGameStartingSection = (): void => {
-    gameStartingSection.style.display = 'none';
+  gameStartingSection.style.display = 'none';
 };
 
 const onGameStarting = async (game: Game, socket: Socket): Promise<void> => {
-    const player = game.getPlayer();
-    const gameId = game.getGameId();
+  const player = game.getPlayer();
+  const gameId = game.getGameId();
 
-    removeInviteFriends();
-    removeStartGame();
-    showGameStartingSection();
+  removeInviteFriends();
+  removeStartGame();
+  showGameStartingSection();
 
-    if (player.isHost) {
-        // host wait 2 seconds then trigger round start
-        await sleepForSeconds(2);
-        const beginRoundsData: BeginRoundsData = {
-            gameId: gameId,
-            host: player,
-        }
-        socket.emit(GAME_BEGIN_ROUNDS, beginRoundsData);
-    }
+  if (player.isHost) {
+    // host wait 2 seconds then trigger round start
+    await sleepForSeconds(2);
+    const beginRoundsData: BeginRoundsData = {
+      gameId: gameId,
+      host: player,
+    };
+    socket.emit(GAME_BEGIN_ROUNDS, beginRoundsData);
+  }
 };
 
 export const initialiseGameStarting = (socket: Socket, game: Game) => {
@@ -41,5 +45,5 @@ export const initialiseGameStarting = (socket: Socket, game: Game) => {
 };
 
 export const removeGameStartingSection = () => {
-    hideGameStartingSection();
+  hideGameStartingSection();
 };

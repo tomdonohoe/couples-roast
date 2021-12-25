@@ -22,4 +22,4 @@ export class ActiveGames {
   public deleteGameId(gameId: string): void {
     this.activeGames.delete(gameId);
   }
-};
+}

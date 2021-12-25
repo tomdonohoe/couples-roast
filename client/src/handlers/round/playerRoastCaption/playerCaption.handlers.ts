@@ -15,12 +15,13 @@ const roundSectionForm: HTMLFormElement =
   document.querySelector('.round__form');
 const roundSectionFormInput: HTMLInputElement =
   document.querySelector('.round__caption');
-const roundSectionFormCaptionContainer =
-  document.querySelector('.round_captionContainer');
+const roundSectionFormCaptionContainer = document.querySelector(
+  '.round_captionContainer',
+);
 
-  const hideRoundSectionForm = (): void => {
-    roundSectionForm.style.display = 'none';
-  };
+const hideRoundSectionForm = (): void => {
+  roundSectionForm.style.display = 'none';
+};
 
 const handleAfterRoastSubmission = () => {
   hideRoundSectionForm();
@@ -29,7 +30,7 @@ const handleAfterRoastSubmission = () => {
   textElement.appendChild(text);
 
   roundSectionFormCaptionContainer.appendChild(textElement);
-}
+};
 
 const submitRoastCaption = (
   event: SubmitEvent,

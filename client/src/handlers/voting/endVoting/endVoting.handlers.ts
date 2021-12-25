@@ -3,103 +3,125 @@ import { Socket } from 'socket.io-client';
 import { Game } from '../../../common/Game';
 import { VOTING_END } from '../../../constants/event.constants';
 import {
-    DEFAULT_TIMEOUT_MS,
-    POINTS_PER_VOTE,
-    BONUS_POINTS_FOR_ROUND_WINNER,
+  BONUS_POINTS_FOR_ROUND_WINNER,
+  DEFAULT_TIMEOUT_MS,
+  POINTS_PER_VOTE,
 } from '../../../constants/game.constants';
-import { PlayerVote, VotingEndedData } from '../../../types/voting.types';
 import { RoundResults } from '../../../types/round.types';
+import { PlayerVote, VotingEndedData } from '../../../types/voting.types';
 
-const determineRoundWinner = (roundResults: RoundResults[]): RoundResults => {
-    return roundResults.sort((a, b) =>  b.points - a.points)[0];
+const sortRoundResultsDescending = (
+  roundResults: RoundResults[],
+): RoundResults[] => {
+  return roundResults.sort((a, b) => b.points - a.points);
+};
+
+const handleBonusPoints = (roundResults: RoundResults[]): RoundResults[] => {
+  const roundLeaderboard = sortRoundResultsDescending(roundResults);
+
+  const winningScore = roundLeaderboard[0].points;
+
+  // find how many players with a winning score
+  const resultsWithWinningScore = roundLeaderboard.filter(
+    (result) => result.points === winningScore,
+  );
+
+  // check for single winner
+  if (resultsWithWinningScore.length === 1) {
+    // add bonus points for one player (first in array must have highest points)
+    roundLeaderboard[0].points += BONUS_POINTS_FOR_ROUND_WINNER;
+  }
+
+  // split the points to multiple winners
+  const splitBonusPointsPerPlayer = Math.round(
+    BONUS_POINTS_FOR_ROUND_WINNER / resultsWithWinningScore.length,
+  );
+
+  for (const player of resultsWithWinningScore) {
+    player.points += splitBonusPointsPerPlayer;
+  }
+
+  return roundLeaderboard;
 };
 
 const calculatePointsPerPlayer = (game: Game, votes: PlayerVote[]) => {
-    const { players } = game.getGameState();
+  const { players } = game.getGameState();
 
-    let roundResults: RoundResults[] = [];
+  const roundResults: RoundResults[] = [];
 
-    for (const player of players) {
-        // find votes for each player
-        const votesForPlayer = votes.filter(vote => vote.playerVoteFor === player.clientId);
+  for (const player of players) {
+    // find votes for each player
+    const votesForPlayer = votes.filter(
+      (vote) => vote.playerVoteFor === player.clientId,
+    );
 
-        // calculate points for each player
-        const pointsForPlayer = votesForPlayer.length * POINTS_PER_VOTE;
+    // calculate points for each player
+    const pointsForPlayer = votesForPlayer.length * POINTS_PER_VOTE;
 
-        const roundResultForPlayer: RoundResults = {
-            player: player,
-            points: pointsForPlayer,
-        };
+    const roundResultForPlayer: RoundResults = {
+      player: player,
+      points: pointsForPlayer,
+    };
 
-        roundResults.push(roundResultForPlayer);
-    }
+    roundResults.push(roundResultForPlayer);
+  }
 
-    console.log('round results before bonus');
-    console.log(roundResults);
+  // add bonus points (split if multiple on the same)
+  // return sorted leaderboard by points descending
+  handleBonusPoints(roundResults);
 
-    // determine the round winner 
-    const roundWinner = determineRoundWinner(roundResults);
-
-    // add bonus points
-    const winner = roundResults.filter(result => result.player === roundWinner.player)[0];
-    winner.points += BONUS_POINTS_FOR_ROUND_WINNER;
-
-    console.log('round results after bonus');
-    console.log(roundResults);
-    return roundResults;
-}
+  return roundResults;
+};
 
 const calculateVotingResults = (round: number, game: Game) => {
-    const player = game.getPlayer();
+  const player = game.getPlayer();
 
-    if (!player.isHost) {
-        // only the host should maintain the game state
-        return;
-    }
+  if (!player.isHost) {
+    // only the host should maintain the game state
+    return;
+  }
 
-    const currentRound = game.getGameState().rounds[round - 1];
-    const results = calculatePointsPerPlayer(game, currentRound.votes);
+  const currentRound = game.getGameState().rounds[round - 1];
+  const results = calculatePointsPerPlayer(game, currentRound.votes);
 
-    return results;
+  return results;
 };
 
 const waitForVotingEnd = async (round: number, game: Game, socket: Socket) => {
-  const gameId = game.getGameId();
   const currentPlayer = game.getPlayer();
   const { players, rounds } = game.getGameState();
   const currentRound = rounds[round - 1];
-  const { votes } = currentRound
+  const { votes } = currentRound;
 
   if (currentPlayer.isHost) {
     try {
-        await game.waitUntil(
-            () => votes.length === players.length,
-            DEFAULT_TIMEOUT_MS,
-        );
+      await game.waitUntil(
+        () => votes.length === players.length,
+        DEFAULT_TIMEOUT_MS,
+      );
 
-        // calculate results
-        const results = calculateVotingResults(round, game);
+      // calculate results
+      const results = calculateVotingResults(round, game);
 
-        // add results to game state
-        for (const result of results) {
-            currentRound.results.push(result);
-        }
+      // add results to game state
+      for (const result of results) {
+        currentRound.results.push(result);
+      }
 
-        // voting end data
-        const votingEndData: VotingEndedData = {
-            gameId: game.getGameId(),
-            round: round,
-            gameState: game.getGameState(),
-        };
+      // voting end data
+      const votingEndData: VotingEndedData = {
+        gameId: game.getGameId(),
+        round: round,
+        gameState: game.getGameState(),
+      };
 
-        console.log('voting ending...');
-        socket.emit(VOTING_END, votingEndData);
+      console.log('voting ending...');
+      socket.emit(VOTING_END, votingEndData);
     } catch (err) {
       console.log(err);
       // can flag players who didn't submit here....
     }
   }
-
 };
 
 export const initialiseVotingEnded = async (

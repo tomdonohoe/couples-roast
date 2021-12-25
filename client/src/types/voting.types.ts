@@ -1,21 +1,21 @@
-import { Player } from "./game.types";
-import { Round } from "./round.types";
-import { GameState } from "./game.types";
+import { Player } from './game.types';
+import { GameState } from './game.types';
+import { Round } from './round.types';
 
 export interface VotingPlayerVote {
-    gameId: string;
-    round: Round;
-    player: Player;
-    host: Player;
-    vote: PlayerVote;
+  gameId: string;
+  round: Round;
+  player: Player;
+  host: Player;
+  vote: PlayerVote;
 }
 
 export interface PlayerVote {
-    playerVoteFor: string;
+  playerVoteFor: string;
 }
 
 export interface VotingEndedData {
-    gameId: string;
-    round: number;
-    gameState: GameState;
+  gameId: string;
+  round: number;
+  gameState: GameState;
 }

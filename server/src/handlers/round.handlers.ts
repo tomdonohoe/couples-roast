@@ -1,22 +1,21 @@
 import { Server, Socket } from 'socket.io';
-import { compileFunction } from 'vm';
 
 import {
   GAME_BEGIN_ROUNDS,
   ROUND_BEGIN,
+  ROUND_ENDED,
   ROUND_PLAYER_CAPTION,
   ROUND_START,
   ROUND_STARTED,
   ROUND_SUBMITTED_PLAYER_CAPTION,
-  ROUND_ENDED,
   VOTING_START,
 } from '../constants/events.constants';
 import {
   BeginRoundsData,
   RoundBeginData,
+  RoundEndedData,
   RoundPlayerCaption,
   RoundStartData,
-  RoundEndedData,
 } from '../types/round.types';
 
 const onGameBeginRounds = (data: BeginRoundsData, io: Server) => {
@@ -40,7 +39,7 @@ const onRoundPlayerCaption = (data: RoundPlayerCaption, io: Server) => {
 
 const onRoundEnded = (data: RoundEndedData, io: Server) => {
   const { gameId } = data;
-  console.log('round ended')
+  console.log('round ended');
   io.to(gameId).emit(VOTING_START, data);
 };
 

@@ -5,7 +5,7 @@ import {
   GAME_BEGIN_ROUNDS,
   GAME_STARTED,
 } from '../../../constants/event.constants';
-import { sleepForSeconds } from '../../../helpers/game.helpers';
+import { sleepForSeconds } from '../../../helpers/common.helpers';
 import { BeginRoundsData } from '../../../types/game.types';
 import { removeInviteFriends } from '../inviteFriends/inviteFriends.handlers';
 import { removeStartGame } from '../startGame/startGame.handlers';

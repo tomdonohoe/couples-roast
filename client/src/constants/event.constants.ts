@@ -23,3 +23,7 @@ export const VOTING_START = 'votingStart';
 export const VOTING_PLAYER_VOTE = 'votingPlayerVote';
 export const VOTING_SUBMITTED_PLAYER_VOTE = 'votingSubmittedPlayerVote';
 export const VOTING_END = 'votingEnd';
+
+// Result Events
+export const RESULTS_ROUND = 'resultsRound';
+export const RESULTS_ROUND_END = 'resultsRoundEnd';

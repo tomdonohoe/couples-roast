@@ -6,13 +6,17 @@ import {
   VOTING_SUBMITTED_PLAYER_VOTE,
 } from '../../../constants/event.constants';
 import { Round } from '../../../types/round.types';
-import { PlayerVote, VotingPlayerVote } from '../../../types/voting.types';
+import { VotingPlayerVote } from '../../../types/voting.types';
 
 const roundResultsSection: HTMLElement =
   document.querySelector('.round-results');
 const roundResultsSectionVoteOptions: HTMLElement = document.querySelector(
   '.round-results__voteOptions',
 );
+
+const hideRoundResultsSection = (): void => {
+  roundResultsSection.style.display = 'none';
+};
 
 const hideRoundResultsSectionVoteOptions = (): void => {
   roundResultsSectionVoteOptions.style.display = 'none';
@@ -84,4 +88,8 @@ export const initialisePlayerVoteSubmission = (
   socket.on(VOTING_SUBMITTED_PLAYER_VOTE, (data: VotingPlayerVote) =>
     onSubmittedPlayerVote(data, game),
   );
+};
+
+export const removeRoundResultsSection = () => {
+  hideRoundResultsSection();
 };

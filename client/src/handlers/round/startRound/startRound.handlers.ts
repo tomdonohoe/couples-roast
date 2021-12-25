@@ -1,10 +1,7 @@
 import { Socket } from 'socket.io-client';
 
 import { Game } from '../../../common/Game';
-import {
-  ROUND_BEGIN,
-  ROUND_START,
-} from '../../../constants/event.constants';
+import { ROUND_BEGIN, ROUND_START } from '../../../constants/event.constants';
 import { PHOTOS } from '../../../constants/photo.constants';
 import { getPhotoById } from '../../../helpers/api.helpers';
 import { Photo } from '../../../types/api.types';

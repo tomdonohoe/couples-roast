@@ -15,3 +15,6 @@ export const GAME_BEGIN_ROUNDS = 'gameBeginRounds';
 // Round Events
 export const ROUND_BEGIN = 'roundBegin';
 export const ROUND_START = 'roundStart';
+export const ROUND_STARTED = 'roundStarted';
+export const ROUND_PLAYER_CAPTION = 'roundPlayerCaption';
+export const ROUND_SUBMITTED_PLAYER_CAPTION = 'roundSubmittedPlayerCaption';

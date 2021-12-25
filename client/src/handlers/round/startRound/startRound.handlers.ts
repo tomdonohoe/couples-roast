@@ -4,6 +4,7 @@ import { Game } from '../../../common/Game';
 import {
     ROUND_BEGIN,
     ROUND_START,
+    ROUND_STARTED,
 } from '../../../constants/event.constants';
 import { PHOTOS } from '../../../constants/photo.constants';
 import {
@@ -23,7 +24,8 @@ const onRoundBegin = async (data: RoundBeginData, socket: Socket, game: Game, ro
     
     const currentRound: Round = {
         number: round,
-        photo: photo
+        photo: photo,
+        captions: [],
     }
 
     // add current round to gameState
@@ -31,6 +33,7 @@ const onRoundBegin = async (data: RoundBeginData, socket: Socket, game: Game, ro
 
     const roundStartData: RoundStartData = {
         gameId: data.gameId,
+        round: round,
         photo: photo,
         gameState: gameState,
     };

@@ -4,11 +4,15 @@ import {
   GAME_BEGIN_ROUNDS,
   ROUND_BEGIN,
   ROUND_START,
+  ROUND_STARTED,
+  ROUND_PLAYER_CAPTION,
+  ROUND_SUBMITTED_PLAYER_CAPTION,
 } from '../constants/events.constants';
 import {
     BeginRoundsData,
     RoundBeginData,
     RoundStartData,
+    RoundPlayerCaption,
 } from '../types/round.types';
 
 const onGameBeginRounds = (data: BeginRoundsData, io: Server) => {
@@ -22,12 +26,13 @@ const onGameBeginRounds = (data: BeginRoundsData, io: Server) => {
 
 const onRoundStart = (data: RoundStartData, io: Server) => {
     const { gameId } = data;
+    io.to(gameId).emit(ROUND_STARTED, data);
+};
 
-    console.log(data);
-    
-    // EMIT ROUND_STARTED 
-    // io.to(gameId).emit();
-  };
+const onRoundPlayerCaption = (data: RoundPlayerCaption, io: Server) => {
+    const { host } = data;
+    io.to(host.clientId).emit(ROUND_SUBMITTED_PLAYER_CAPTION, data);
+};
 
 export const registerRoundHandlers = (
   socket: Socket,
@@ -39,4 +44,7 @@ export const registerRoundHandlers = (
   socket.on(ROUND_START, (data: RoundStartData) => {
     onRoundStart(data, io)
   });
+  socket.on(ROUND_PLAYER_CAPTION, (data: RoundPlayerCaption) => {
+    onRoundPlayerCaption(data, io);
+  })
 };

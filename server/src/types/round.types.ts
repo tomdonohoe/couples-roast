@@ -18,6 +18,15 @@ export interface RoundBeginData {
 
 export interface RoundStartData {
     gameId: string;
+    round: number;
     photo: Photo;
     gameState: GameState;
+}
+
+export interface RoundPlayerCaption {
+    gameId: string;
+    round: number;
+    player: Player;
+    host: Player;
+    caption: string;
 }

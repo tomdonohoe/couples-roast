@@ -39,3 +39,7 @@ const onGameStarting = async (game: Game, socket: Socket): Promise<void> => {
 export const initialiseGameStarting = (socket: Socket, game: Game) => {
   socket.on(GAME_STARTED, () => onGameStarting(game, socket));
 };
+
+export const removeGameStartingSection = () => {
+    hideGameStartingSection();
+};

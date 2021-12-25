@@ -54,3 +54,7 @@ h1 {
     height: 300px;
     width: auto; 
 }
+
+.round-leaderboard {
+    display: none;
+}

@@ -1,4 +1,5 @@
 import { Player } from './game.types';
+import { GameState } from './game.types';
 import { Round } from './round.types';
 
 export interface VotingPlayerVote {
@@ -11,4 +12,10 @@ export interface VotingPlayerVote {
 
 export interface PlayerVote {
   playerVoteFor: PlayerVote;
+}
+
+export interface VotingEndedData {
+  gameId: string;
+  round: number;
+  gameState: GameState;
 }

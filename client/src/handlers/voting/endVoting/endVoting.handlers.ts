@@ -30,6 +30,8 @@ const handleBonusPoints = (roundResults: RoundResults[]): RoundResults[] => {
   if (resultsWithWinningScore.length === 1) {
     // add bonus points for one player (first in array must have highest points)
     roundLeaderboard[0].points += BONUS_POINTS_FOR_ROUND_WINNER;
+
+    return roundLeaderboard;
   }
 
   // split the points to multiple winners

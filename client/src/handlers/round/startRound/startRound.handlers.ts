@@ -31,6 +31,8 @@ const onRoundBegin = async (
     number: round,
     photo: photo,
     captions: [],
+    votes: [],
+    results: [],
   };
 
   // add current round to gameState

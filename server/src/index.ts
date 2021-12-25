@@ -10,6 +10,7 @@ import { ActiveGames } from './common/ActiveGames';
 import { CONNECTION } from './constants/events.constants';
 import { registerGameHandlers } from './handlers/game.handlers';
 import { registerRoundHandlers } from './handlers/round.handlers';
+import { registerVoteHandlers } from './handlers/vote.handlers';
 
 const app = express();
 const server = http.createServer(app);
@@ -23,6 +24,7 @@ app.use(express.static(__dirname + '/public'));
 const onConnection = (socket: Socket): void => {
   registerGameHandlers(socket, io, activeGames);
   registerRoundHandlers(socket, io);
+  registerVoteHandlers(socket, io);
 };
 
 io.on(CONNECTION, onConnection);

@@ -35,6 +35,22 @@ h1 {
     display: none;
 }
 
+/* ROUND */
 .round {
     display: none;
+}
+
+.round__image {
+    height: 300px;
+    width: auto;
+}
+
+/* ROUND RESULTS */
+.round-results {
+    display: none;
+}
+
+.round-results__image {
+    height: 300px;
+    width: auto; 
 }

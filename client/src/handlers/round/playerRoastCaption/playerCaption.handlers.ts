@@ -15,6 +15,21 @@ const roundSectionForm: HTMLFormElement =
   document.querySelector('.round__form');
 const roundSectionFormInput: HTMLInputElement =
   document.querySelector('.round__caption');
+const roundSectionFormCaptionContainer =
+  document.querySelector('.round_captionContainer');
+
+  const hideRoundSectionForm = (): void => {
+    roundSectionForm.style.display = 'none';
+  };
+
+const handleAfterRoastSubmission = () => {
+  hideRoundSectionForm();
+  const textElement = document.createElement('p');
+  const text = document.createTextNode('waiting for other players....');
+  textElement.appendChild(text);
+
+  roundSectionFormCaptionContainer.appendChild(textElement);
+}
 
 const submitRoastCaption = (
   event: SubmitEvent,
@@ -37,6 +52,8 @@ const submitRoastCaption = (
     };
     socket.emit(ROUND_PLAYER_CAPTION, playerCaption);
   }
+
+  handleAfterRoastSubmission();
 };
 
 const onSubmittedRoastCaption = (data: RoundPlayerCaption, game: Game) => {

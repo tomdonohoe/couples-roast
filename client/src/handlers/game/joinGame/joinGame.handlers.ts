@@ -1,18 +1,18 @@
 import { Socket } from 'socket.io-client';
 
-import { Game } from '../../common/Game';
+import { Game } from '../../../common/Game';
 import {
   GAME_ALREADY_STARTED,
   GAME_FULL,
   GAME_JOIN,
   GAME_JOINED,
-} from '../../constants/event.constants';
-import { getGameIdFromUrl } from '../../helpers/game.helpers';
+} from '../../../constants/event.constants';
+import { getGameIdFromUrl } from '../../../helpers/game.helpers';
 import {
   GameJoinData,
   GameJoinedData,
   GameJoinErrorData,
-} from '../../types/game.types';
+} from '../../../types/game.types';
 import { initialiseConnectedPlayers } from '../connectedPlayers/connectedPlayers.handlers';
 import { initialiseInviteFriends } from '../inviteFriends/inviteFriends.handlers';
 import { initialiseStartGame } from '../startGame/startGame.handlers';

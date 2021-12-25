@@ -34,3 +34,7 @@ h1 {
 .game-starting {
     display: none;
 }
+
+.round {
+    display: none;
+}

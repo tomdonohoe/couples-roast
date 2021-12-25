@@ -1,5 +1,8 @@
-import { Game } from '../../common/Game';
-import { handleCopyLinkClick, linkGenerator } from '../../helpers/game.helpers';
+import { Game } from '../../../common/Game';
+import {
+  handleCopyLinkClick,
+  linkGenerator,
+} from '../../../helpers/game.helpers';
 
 const inviteFriendsSection: HTMLElement =
   document.querySelector('.invite-friends');
@@ -15,8 +18,8 @@ const showInviteFriendsSection = (): void => {
 };
 
 const hideInviteFriendsSection = (): void => {
-    inviteFriendsSection.style.display = 'none';
-  };
+  inviteFriendsSection.style.display = 'none';
+};
 
 const addInviteFriendsLink = (gameId: string): void => {
   showInviteFriendsSection();
@@ -32,5 +35,5 @@ export const initialiseInviteFriends = (game: Game) => {
 };
 
 export const removeInviteFriends = () => {
-    hideInviteFriendsSection();
+  hideInviteFriendsSection();
 };

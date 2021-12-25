@@ -8,3 +8,12 @@ export const GAME_JOINED = 'gameJoined';
 export const GAME_NEW_PLAYER_JOINED = 'gameNewPlayerJoined';
 export const GAME_FULL = 'gameFull';
 export const GAME_ALREADY_STARTED = 'gameAlreadyStarted';
+export const GAME_BEGIN_ROUNDS = 'gameBeginRounds';
+
+// Round Events
+export const ROUND_BEGIN = 'roundBegin';
+export const ROUND_START = 'roundStart';
+export const ROUND_STARTED = 'roundStarted';
+export const ROUND_PLAYER_CAPTION = 'roundPlayerCaption';
+export const ROUND_SUBMITTED_PLAYER_CAPTION = 'roundSubmittedPlayerCaption';
+export const ROUND_ENDED = 'roundEnded';

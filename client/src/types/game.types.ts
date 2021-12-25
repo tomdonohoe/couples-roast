@@ -1,3 +1,10 @@
+import { Round } from './round.types';
+
+export interface GameState {
+  players: Player[];
+  rounds: Round[];
+}
+
 export interface Player {
   clientId: string;
   friendlyName: string;
@@ -19,10 +26,6 @@ export interface GameStartData {
   gameId: string;
 }
 
-export interface GameState {
-  players: Player[];
-}
-
 export interface GameJoinData {
   gameId: string;
   friendlyName: string;
@@ -41,4 +44,9 @@ export interface GameNewPlayerJoinedData {
 
 export interface GameJoinErrorData {
   message: string;
+}
+
+export interface BeginRoundsData {
+  gameId: string;
+  host: Player;
 }

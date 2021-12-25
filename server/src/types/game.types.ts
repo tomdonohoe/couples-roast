@@ -1,3 +1,10 @@
+import { Round } from '../types/round.types';
+
+export interface GameState {
+  players: Player[];
+  rounds: Round[];
+}
+
 export interface Player {
   clientId: string;
   friendlyName: string;

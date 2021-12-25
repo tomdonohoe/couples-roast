@@ -1,9 +1,9 @@
 import { Socket } from 'socket.io-client';
 
-import { Game } from '../../common/Game';
-import { GAME_CREATE, GAME_CREATED } from '../../constants/event.constants';
-import { generateGameId } from '../../helpers/game.helpers';
-import { GameCreateData, GameCreatedData } from '../../types/game.types';
+import { Game } from '../../../common/Game';
+import { GAME_CREATE, GAME_CREATED } from '../../../constants/event.constants';
+import { generateGameId } from '../../../helpers/game.helpers';
+import { GameCreateData, GameCreatedData } from '../../../types/game.types';
 import { initialiseConnectedPlayers } from '../connectedPlayers/connectedPlayers.handlers';
 import { initialiseInviteFriends } from '../inviteFriends/inviteFriends.handlers';
 import { initialiseStartGame } from '../startGame/startGame.handlers';

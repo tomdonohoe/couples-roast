@@ -1,8 +1,8 @@
 import { Socket } from 'socket.io-client';
 
-import { Game } from '../../common/Game';
-import { GAME_NEW_PLAYER_JOINED } from '../../constants/event.constants';
-import { GameNewPlayerJoinedData, Player } from '../../types/game.types';
+import { Game } from '../../../common/Game';
+import { GAME_NEW_PLAYER_JOINED } from '../../../constants/event.constants';
+import { GameNewPlayerJoinedData, Player } from '../../../types/game.types';
 
 const playersSection: HTMLElement = document.querySelector('.players');
 const playersSectionList: HTMLElement =

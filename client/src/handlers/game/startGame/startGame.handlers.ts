@@ -1,11 +1,10 @@
 import { Socket } from 'socket.io-client';
 
-import { Game } from '../../common/Game';
-import { GAME_START } from '../../constants/event.constants';
-import { GameStartData } from '../../types/game.types';
+import { Game } from '../../../common/Game';
+import { GAME_START } from '../../../constants/event.constants';
+import { GameStartData } from '../../../types/game.types';
 
-const startGameSection: HTMLElement =
-  document.querySelector('.start-game');
+const startGameSection: HTMLElement = document.querySelector('.start-game');
 const startGameSectionReady: HTMLElement =
   document.querySelector('.start-game__ready');
 const startGameSectionBtn: HTMLElement =
@@ -16,7 +15,7 @@ const startGameSectionHost: HTMLElement =
   document.querySelector('.start-game__host');
 
 const hideStartGameSection = (): void => {
-    startGameSection.style.display = 'none';
+  startGameSection.style.display = 'none';
 };
 
 const showStartGameSectionReady = (): void => {
@@ -54,5 +53,5 @@ export const initialiseStartGame = (game: Game, socket?: Socket) => {
 };
 
 export const removeStartGame = () => {
-    hideStartGameSection();
-}
+  hideStartGameSection();
+};

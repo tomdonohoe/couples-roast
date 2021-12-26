@@ -215,11 +215,33 @@ html {
     padding: 0.5rem;
 }
 
-/* JOIN GAME */
+/******************************************
+* Join Game 
+******************************************/
 .join-game {
     display: none;
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 4px solid black;
+    border-radius: 1rem;
 }
 
+.join-game__action button,
+.join-game__action input {
+    width: 100%;
+    border-radius: 0.5rem;
+}
+
+.join-game__action input {
+    border: none;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+}
+
+.join-game__action button {
+    color: #fff;
+    padding: 0.5rem;
+}
 /******************************************
 * Invite Your Friends
 ******************************************/

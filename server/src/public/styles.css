@@ -45,6 +45,10 @@ h1 {
     width: auto;
 }
 
+.round__waitingForOthers {
+    display: none;
+}
+
 /* ROUND RESULTS */
 .round-results {
     display: none;
@@ -56,5 +60,9 @@ h1 {
 }
 
 .round-leaderboard {
+    display: none;
+}
+
+.game-leaderboard {
     display: none;
 }

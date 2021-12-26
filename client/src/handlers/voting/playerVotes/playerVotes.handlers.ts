@@ -13,13 +13,35 @@ const roundResultsSection: HTMLElement =
 const roundResultsSectionVoteOptions: HTMLElement = document.querySelector(
   '.round-results__voteOptions',
 );
+const roundResultsSectionCaptions: HTMLElement = document.querySelector(
+  '.round-results_captions',
+);
+const roundResultsWaitingForOthers: HTMLElement = document.querySelector(
+  '.round-results__waitingForOthers',
+);
 
 const hideRoundResultsSection = (): void => {
   roundResultsSection.style.display = 'none';
 };
 
+const showRoundResultsSectionVoteOptions = (): void => {
+  roundResultsSectionVoteOptions.style.display = 'block';
+};
+
 const hideRoundResultsSectionVoteOptions = (): void => {
   roundResultsSectionVoteOptions.style.display = 'none';
+};
+
+const showRoundResultsWaitingForOthers = (): void => {
+  roundResultsWaitingForOthers.style.display = 'block';
+};
+
+const hideRoundResultsWaitingForOthers = (): void => {
+  roundResultsWaitingForOthers.style.display = 'none';
+};
+
+const removeRoundResultsSectionCaptions = (): void => {
+  roundResultsSectionCaptions.innerHTML = '';
 };
 
 const handlePlayerVoteSubmission = (
@@ -29,13 +51,9 @@ const handlePlayerVoteSubmission = (
   game: Game,
 ) => {
   const clientId = event.target.getAttribute('data-client-id');
+  removeRoundResultsSectionCaptions();
   hideRoundResultsSectionVoteOptions();
-
-  const textElement = document.createElement('p');
-  const text = document.createTextNode('waiting for other players to vote....');
-  textElement.appendChild(text);
-
-  roundResultsSection.appendChild(textElement);
+  showRoundResultsWaitingForOthers();
 
   const playerVote: VotingPlayerVote = {
     gameId: game.getGameId(),
@@ -50,15 +68,21 @@ const handlePlayerVoteSubmission = (
   socket.emit(VOTING_PLAYER_VOTE, playerVote);
 };
 
-const submitPlayerVote = (data: Round, socket: Socket, game: Game) => {
+const submitPlayerVote = (socket: Socket, game: Game) => {
   const playerRoastCaptions = document.querySelectorAll(
     '.round-results_caption',
   );
 
+  console.log('player roast captions');
+  console.log(playerRoastCaptions);
+
+  const { rounds } = game.getGameState();
+  const currentRound = rounds[rounds.length - 1];
+
   for (let i = 0; i < playerRoastCaptions.length; i++) {
     const roastCaption = playerRoastCaptions[i];
     roastCaption.addEventListener('click', (event: any) =>
-      handlePlayerVoteSubmission(event, data, socket, game),
+      handlePlayerVoteSubmission(event, currentRound, socket, game),
     );
   }
 };
@@ -83,13 +107,24 @@ export const initialisePlayerVoteSubmission = (
   game: Game,
   socket: Socket,
 ) => {
-  submitPlayerVote(data, socket, game);
+  const roundNumber = data.number;
+  submitPlayerVote(socket, game);
 
-  socket.on(VOTING_SUBMITTED_PLAYER_VOTE, (data: VotingPlayerVote) =>
-    onSubmittedPlayerVote(data, game),
-  );
+  if (roundNumber === 1) {
+    socket.on(VOTING_SUBMITTED_PLAYER_VOTE, (data: VotingPlayerVote) =>
+      onSubmittedPlayerVote(data, game),
+    );
+  }
 };
 
 export const removeRoundResultsSection = () => {
   hideRoundResultsSection();
+};
+
+export const resetRoundResultsSection = () => {
+  // deletes the waiting for others element from DOM
+  hideRoundResultsWaitingForOthers();
+
+  // enables showing captions to vote for
+  showRoundResultsSectionVoteOptions();
 };

@@ -11,13 +11,15 @@ const waitForRoundEnd = async (round: number, game: Game, socket: Socket) => {
   const { players, rounds } = game.getGameState();
   const { captions } = rounds[round - 1];
 
+  console.log(`waiting for round ${round} to end`);
   if (currentPlayer.isHost) {
     try {
       await game.waitUntil(
         () => captions.length === players.length,
         DEFAULT_TIMEOUT_MS,
       );
-
+      console.log(players);
+      console.log(captions);
       const roundEndedData: RoundEndedData = {
         gameId: gameId,
         round: round,
@@ -28,6 +30,7 @@ const waitForRoundEnd = async (round: number, game: Game, socket: Socket) => {
       console.log(roundEndedData);
       socket.emit(ROUND_ENDED, roundEndedData);
     } catch (err) {
+      console.log('error');
       console.log(err);
       // can flag players who didn't submit here....
     }

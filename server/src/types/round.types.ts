@@ -14,6 +14,7 @@ export interface BeginRoundsData {
 
 export interface RoundBeginData {
   gameId: string;
+  round: number;
 }
 
 export interface RoundStartData {

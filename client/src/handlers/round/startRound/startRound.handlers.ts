@@ -10,21 +10,35 @@ import {
   RoundBeginData,
   RoundStartData,
 } from '../../../types/round.types';
+import { resetVotingForNewRound } from '../../voting/startVoting/startVoting.handlers';
+import { resetPlayerRoastCaption } from '../playerRoastCaption/playerCaption.handlers';
 
 const onRoundBegin = async (
   data: RoundBeginData,
   socket: Socket,
   game: Game,
-  round = 1,
 ) => {
+  const player = game.getPlayer();
+  const roundNumber = data.round;
+
+  if (roundNumber > 1) {
+    resetForNewRound();
+  }
+
+  console.log(`round beginning ${data.round}`);
+
+  if (!player.isHost) {
+    return;
+  }
+
   const gameState = game.getGameState();
   const { rounds } = gameState;
 
-  const res = await getPhotoById(PHOTOS[round - 1]);
+  const res = await getPhotoById(PHOTOS[roundNumber - 1]);
   const photo: Photo = await res.json();
 
   const currentRound: Round = {
-    number: round,
+    number: roundNumber,
     photo: photo,
     captions: [],
     votes: [],
@@ -36,7 +50,7 @@ const onRoundBegin = async (
 
   const roundStartData: RoundStartData = {
     gameId: data.gameId,
-    round: round,
+    round: roundNumber,
     photo: photo,
     gameState: gameState,
   };
@@ -48,4 +62,9 @@ export const initialiseStartRound = (game: Game, socket: Socket) => {
   socket.on(ROUND_BEGIN, (data: RoundBeginData) =>
     onRoundBegin(data, socket, game),
   );
+};
+
+export const resetForNewRound = (): void => {
+  resetVotingForNewRound();
+  resetPlayerRoastCaption();
 };

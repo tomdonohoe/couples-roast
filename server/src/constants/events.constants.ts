@@ -28,3 +28,4 @@ export const VOTING_END = 'votingEnd';
 
 // Result Events
 export const RESULTS_ROUND = 'resultsRound';
+export const RESULTS_ROUND_END = 'resultsRoundEnd';

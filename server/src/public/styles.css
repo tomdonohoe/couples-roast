@@ -342,8 +342,16 @@ html {
     display: none;
 }
 
+/******************************************
+* Game Starting
+******************************************/
+
 .game-starting {
     display: none;
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 4px solid black;
+    border-radius: 1rem;
 }
 
 /* ROUND */

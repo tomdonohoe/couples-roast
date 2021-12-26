@@ -24,6 +24,9 @@ const roundLeaderboardSection: HTMLElement =
 const roundLeaderboardSectionList = document.querySelector(
   '.round-leaderboard__list',
 );
+const roundLeaderboardSectionWinner: HTMLElement = document.querySelector(
+    '.round-leaderboard__winner',
+  );
 
 const showRoundLeaderboardSection = (): void => {
   roundLeaderboardSection.style.display = 'block';
@@ -40,6 +43,9 @@ const removeRoundLeaderboardSectionList = (): void => {
 const addRoundLeaderboard = (round: number, game: Game) => {
   const { rounds } = game.getGameState();
   const currentRoundResults = rounds[round - 1].results;
+  const winner = currentRoundResults[0];
+
+  roundLeaderboardSectionWinner.innerText = winner.player.friendlyName;
 
   for (const result of currentRoundResults) {
     const playerPoints = document.createElement('li');

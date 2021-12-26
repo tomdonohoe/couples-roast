@@ -32,7 +32,7 @@ const addGameLeaderboard = (game: Game) => {
     const winner = currentRoundGameLeaderboard[0].player.friendlyName;
     gameLeaderboardSectionHeading.innerHTML = `And the winner is ${winner}!`;
   } else {
-    gameLeaderboardSectionHeading.innerHTML = 'The current game leaders are:';
+    gameLeaderboardSectionHeading.innerHTML = 'Game Leaderboard';
   }
 
   for (const result of currentRoundGameLeaderboard) {

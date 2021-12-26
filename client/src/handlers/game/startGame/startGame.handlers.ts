@@ -14,6 +14,10 @@ const startGameSectionWait: HTMLElement =
 const startGameSectionHost: HTMLElement =
   document.querySelector('.start-game__host');
 
+const showStartGameSection = (): void => {
+    startGameSection.style.display = 'block';
+};
+
 const hideStartGameSection = (): void => {
   startGameSection.style.display = 'none';
 };
@@ -41,6 +45,8 @@ const waitForHostToStartGame = (hostFriendlyName: string) => {
 
 export const initialiseStartGame = (game: Game, socket?: Socket) => {
   const { isHost } = game.getPlayer();
+
+  showStartGameSection();
 
   if (isHost) {
     showStartGameSectionReady();

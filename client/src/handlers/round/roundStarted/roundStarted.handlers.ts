@@ -11,6 +11,12 @@ import { resetForNewRound } from '../startRound/startRound.handlers';
 const roundSection: HTMLElement = document.querySelector('.round');
 const roundSectionImage: HTMLImageElement =
   document.querySelector('.round__image');
+const roundSectionImagePhotographer: HTMLElement =
+  document.querySelector('.round__imageMetaPhotographer');
+const roundSectionImagePexelsLink: HTMLAnchorElement =
+  document.querySelector('.round__imageMetaPexelsLink');
+  
+
 
 const showRoundSection = (): void => {
   roundSection.style.display = 'block';
@@ -22,7 +28,10 @@ const hideRoundSection = (): void => {
 
 const addRoundSection = (data: RoundStartData) => {
   showRoundSection();
-  roundSectionImage.src = data.photo.src.landscape;
+  const { photo } = data;
+  roundSectionImage.src = photo.src.landscape;
+  roundSectionImagePhotographer.textContent = photo.photographer;
+  roundSectionImagePexelsLink.href = photo.url;
 };
 
 const onRoundStarted = (data: RoundStartData, socket: Socket, game: Game) => {

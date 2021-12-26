@@ -3,6 +3,7 @@ import { Socket } from 'socket.io-client';
 import { Game } from '../../common/Game';
 import { isHost } from '../../helpers/game.helpers';
 import { initialiseCreateGame } from './createGame/createGame.handlers';
+import { initialiseGameOver } from './gameOver/gameOver.handlers';
 import { initialiseGameStarting } from './gameStarting/gameStarting.handlers';
 import { initialiseJoinGame } from './joinGame/joinGame.handlers';
 
@@ -16,4 +17,5 @@ export const initialiseGameHandlers = (game: Game, socket: Socket) => {
   }
 
   initialiseGameStarting(socket, game);
+  initialiseGameOver(socket);
 };

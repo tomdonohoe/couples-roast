@@ -5,3 +5,7 @@ export interface ResultsRoundEndData {
   round: number;
   host: Player;
 }
+
+export interface ResultsGameEndData {
+  gameId: string;
+}

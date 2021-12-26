@@ -11,6 +11,7 @@ export const GAME_FULL = 'gameFull';
 export const GAME_ALREADY_STARTED = 'gameAlreadyStarted';
 export const GAME_JOIN_NO_ERRORS = 'gameJoinNoErrors';
 export const GAME_BEGIN_ROUNDS = 'gameBeginRounds';
+export const GAME_OVER = 'gameOver';
 
 // Round Events
 export const ROUND_BEGIN = 'roundBegin';
@@ -29,3 +30,4 @@ export const VOTING_END = 'votingEnd';
 // Result Events
 export const RESULTS_ROUND = 'resultsRound';
 export const RESULTS_ROUND_END = 'resultsRoundEnd';
+export const RESULTS_GAME_END = 'resultsGameEnd';

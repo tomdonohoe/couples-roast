@@ -10,3 +10,7 @@ export interface GameResults {
   player: Player;
   points: number;
 }
+
+export interface ResultsGameEndData {
+  gameId: string;
+}

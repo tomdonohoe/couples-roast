@@ -2,8 +2,12 @@
 <html>
   <head>
     <title>Couples Roast!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
   </head>
   <body>
     <div class="couples-roast">
@@ -13,11 +17,13 @@
       </header>
 
       <!-- Create a new game -->
-      <div class="create-game">
+      <div class="create-game yellow-bg">
         <form class="create-game__form">
           <h1 class="create-game__heading">Start a new game:</h1>
-          <input class="create-game__name" type="text" placeholder="enter your name" />
-          <button>Create Game</button>
+          <div class="create-game__action">
+            <input class="create-game__name" type="text" placeholder="enter your name" />
+            <button class="green-bg">Create Game</button>
+          </div>
         </form>
       </div>
 

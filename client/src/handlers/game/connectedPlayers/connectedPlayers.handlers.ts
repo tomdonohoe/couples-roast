@@ -3,6 +3,7 @@ import { Socket } from 'socket.io-client';
 import { Game } from '../../../common/Game';
 import { GAME_NEW_PLAYER_JOINED } from '../../../constants/event.constants';
 import { GameNewPlayerJoinedData, Player } from '../../../types/game.types';
+import { generateRandomHexColor } from '../../../helpers/game.helpers';
 
 const playersSection: HTMLElement = document.querySelector('.players');
 const playersSectionList: HTMLElement =
@@ -13,9 +14,23 @@ const showConnectedPlayersSection = (): void => {
 };
 
 const createConnectedPlayerItem = (player: Player): void => {
-  const li = document.createElement('li');
-  li.appendChild(document.createTextNode(player.friendlyName));
-  playersSectionList.appendChild(li);
+  const color = generateRandomHexColor(6);
+  console.log(color);
+  const div = document.createElement('div');
+  div.classList.add('players__connectedPlayer')
+
+  const span = document.createElement('span');
+  span.classList.add('players__dot');
+  span.style.backgroundColor = `#${color}`;
+
+  const connectedPlayer = document.createElement('span');
+  connectedPlayer.classList.add('players__connectedPlayerName');
+  const connectedPlayerName = document.createTextNode(player.friendlyName)
+  connectedPlayer.appendChild(connectedPlayerName);
+
+  div.appendChild(span);
+  div.appendChild(connectedPlayer);
+  playersSectionList.appendChild(div);
 };
 
 const addConnectedPlayers = (players: Player[]): void => {

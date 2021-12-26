@@ -173,9 +173,9 @@ html {
   =============================================================================
 */
 
-/**************
+/******************************************
 * Logo 
-**************/
+******************************************/
 
 .header {
     margin: auto;
@@ -187,9 +187,9 @@ html {
 }
 
 
-/**************
+/******************************************
 * Create Game 
-**************/
+******************************************/
 .create-game {
     display: none;
     margin: 1rem 0;
@@ -220,9 +220,47 @@ html {
     display: none;
 }
 
-/* INVITE FRIENDS */
+/******************************************
+* Invite Your Friends
+******************************************/
+
 .invite-friends {
     display: none;
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 4px solid black;
+    border-radius: 1rem;
+}
+
+.invite-friends__action {
+    display: flex;
+}
+
+.invite-friends__link,
+.invite-friends__copyBtn {
+    padding: 0.8rem;
+}
+
+.invite-friends__link {
+    width: 70%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: #fff;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+
+.invite-friends__copyBtn {
+    color: #fff;
+    width: 30%;
+    border: none;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.invite-friends__copyBtn:hover {
+    background-color: #6abab1;
 }
 
 /* PLAYERS */

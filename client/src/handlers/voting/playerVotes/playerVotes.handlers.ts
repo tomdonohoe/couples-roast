@@ -70,7 +70,7 @@ const handlePlayerVoteSubmission = (
 
 const submitPlayerVote = (socket: Socket, game: Game) => {
   const playerRoastCaptions = document.querySelectorAll(
-    '.round-results_caption',
+    '.round-results__caption',
   );
 
   console.log('player roast captions');

@@ -16,6 +16,10 @@ const roundResultsSectionImage: HTMLImageElement = document.querySelector(
 const roundResultsSectionCaptions: HTMLElement = document.querySelector(
   '.round-results_captions',
 );
+const roundResultsSectionImagePhotographer: HTMLElement =
+  document.querySelector('.round-results__imageMetaPhotographer');
+const roundResultsSectionImagePexelsLink: HTMLAnchorElement =
+  document.querySelector('.round-results__imageMetaPexelsLink');
 
 const showRoundResultsSection = (): void => {
   roundResultsSection.style.display = 'block';
@@ -23,21 +27,25 @@ const showRoundResultsSection = (): void => {
 
 const addRoundCaptionsForVoting = (data: Round): void => {
   showRoundResultsSection();
-
-  roundResultsSectionImage.src = data.photo.src.landscape;
+  
+  const { photo } = data;
+  roundResultsSectionImage.src = photo.src.landscape;
+  roundResultsSectionImagePhotographer.textContent = photo.photographer;
+  roundResultsSectionImagePexelsLink.href = photo.url;
   const captions = data.captions;
 
   // disable voting for yourself:
   // const captions = roundData.captions.filter(caption => caption.player.clientId !== game.playerIdentity.clientId);
 
   for (const caption of captions) {
-    const playerCaption = document.createElement('li');
+    const playerCaption = document.createElement('div');
     const text = document.createTextNode(
       `${caption.player.friendlyName}: ${caption.caption}`,
     );
     playerCaption.appendChild(text);
+
     playerCaption.setAttribute('data-client-id', caption.player.clientId);
-    playerCaption.classList.add('round-results_caption');
+    playerCaption.classList.add('round-results__caption', 'green-bg');
     roundResultsSectionCaptions.appendChild(playerCaption);
   }
 };

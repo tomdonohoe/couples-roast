@@ -367,7 +367,7 @@ html {
 }
 
 /******************************************
-* Game Starting
+* Round
 ******************************************/
 
 .round {
@@ -446,13 +446,60 @@ html {
     display: none;
 }
 
-/* ROUND RESULTS */
+/******************************************
+* Round Results
+******************************************/
+
 .round-results {
     display: none;
+    width: 100%;
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 4px solid black;
+    border-radius: 1rem;
+}
+
+@media only screen and (min-width: 1200px) {
+    .round-results {
+        width: 50vw;
+        position: relative;
+    }
+}
+
+.round-results__howTo {
+    font-size: 0.8rem;
+    color: gray;
 }
 
 .round-results__image {
     width: auto; 
+}
+
+.round-results_captions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+@media only screen and (min-width: 1200px) {
+    .round-results_captions {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+.round-results__caption {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+@media only screen and (min-width: 1200px) {
+    .round-results__caption {
+        width: 50%;
+    }
 }
 
 .round-leaderboard {

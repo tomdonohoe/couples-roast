@@ -7,17 +7,12 @@ import {
   DEFAULT_TIMEOUT_MS,
   POINTS_PER_VOTE,
 } from '../../../constants/game.constants';
+import { sortResultsDescending } from '../../../helpers/common.helpers';
 import { RoundResults } from '../../../types/round.types';
 import { PlayerVote, VotingEndedData } from '../../../types/voting.types';
 
-const sortRoundResultsDescending = (
-  roundResults: RoundResults[],
-): RoundResults[] => {
-  return roundResults.sort((a, b) => b.points - a.points);
-};
-
 const handleBonusPoints = (roundResults: RoundResults[]): RoundResults[] => {
-  const roundLeaderboard = sortRoundResultsDescending(roundResults);
+  const roundLeaderboard = sortResultsDescending(roundResults);
 
   const winningScore = roundLeaderboard[0].points;
 

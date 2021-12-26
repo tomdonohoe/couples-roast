@@ -5,6 +5,7 @@ import { VOTING_START } from '../../../constants/event.constants';
 import { Round, RoundEndedData } from '../../../types/round.types';
 import { removeRoundStarted } from '../../round/roundStarted/roundStarted.handlers';
 import { initialiseVotingEnded } from '../endVoting/endVoting.handlers';
+import { resetRoundResultsSection } from '../playerVotes/playerVotes.handlers';
 import { initialisePlayerVoteSubmission } from '../playerVotes/playerVotes.handlers';
 
 const roundResultsSection: HTMLElement =
@@ -67,4 +68,8 @@ export const initialiseStartVoting = (game: Game, socket: Socket) => {
   socket.on(VOTING_START, (data: RoundEndedData) =>
     onStartVoting(data, socket, game),
   );
+};
+
+export const resetVotingForNewRound = () => {
+  resetRoundResultsSection();
 };

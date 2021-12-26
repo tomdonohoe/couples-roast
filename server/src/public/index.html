@@ -50,6 +50,7 @@
             <input class="round__caption" type="text" placeholder="enter your roast" />
             <button>Confirm Roast!</button>
           </form>
+          <p class="round__waitingForOthers">waiting for other players....</p>
         </div>
       </div>
 
@@ -64,6 +65,8 @@
           <h2>Vote for you favourite Roast:</h2>
           <ul class="round-results_captions"></ul>
         </div>
+
+        <p class="round-results__waitingForOthers">waiting for other players to vote....</p>
       </div>
 
       <!-- Start Game or Wait -->
@@ -97,8 +100,14 @@
 
       <!-- Round Leaderboard -->
       <div class="round-leaderboard">
-        <h2 class="round-leaderboard__heading">The leaders are:</h2>
+        <h2 class="round-leaderboard__heading">The round winner is:</h2>
         <ol class="round-leaderboard__list"></ol>
+      </div>
+
+      <!-- Game Leaderboard -->
+      <div class="game-leaderboard">
+        <h2 class="game-leaderboard__heading">The current game leaders are:</h2>
+        <ol class="game-leaderboard__list"></ol>
       </div>
 
       <!-- Connected Players -->

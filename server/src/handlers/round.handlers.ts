@@ -22,6 +22,7 @@ const onGameBeginRounds = (data: BeginRoundsData, io: Server) => {
   const { host, gameId } = data;
   const roundBeginData: RoundBeginData = {
     gameId: gameId,
+    round: 1,
   };
 
   io.to(host.clientId).emit(ROUND_BEGIN, roundBeginData);

@@ -6,6 +6,7 @@ import { RoundStartData } from '../../../types/round.types';
 import { removeGameStartingSection } from '../../game/gameStarting/gameStarting.handlers';
 import { initialisePlayerRoastCaption } from '../playerRoastCaption/playerCaption.handlers';
 import { initialiseRoundEnded } from '../roundEnded/roundEnded.handlers';
+import { resetForNewRound } from '../startRound/startRound.handlers';
 
 const roundSection: HTMLElement = document.querySelector('.round');
 const roundSectionImage: HTMLImageElement =
@@ -19,6 +20,11 @@ const hideRoundSection = (): void => {
   roundSection.style.display = 'none';
 };
 
+const addRoundSection = (data: RoundStartData) => {
+  showRoundSection();
+  roundSectionImage.src = data.photo.src.landscape;
+};
+
 const onRoundStarted = (data: RoundStartData, socket: Socket, game: Game) => {
   const { gameState, round } = data;
   const player = game.getPlayer();
@@ -26,6 +32,10 @@ const onRoundStarted = (data: RoundStartData, socket: Socket, game: Game) => {
   if (!player.isHost) {
     // update game state for guests.
     game.setGameState(gameState);
+  }
+
+  if (round > 1) {
+    resetForNewRound();
   }
 
   // removes the game starting message + rules
@@ -39,11 +49,6 @@ const onRoundStarted = (data: RoundStartData, socket: Socket, game: Game) => {
 
   // listens for the game end and tells server
   initialiseRoundEnded(round, game, socket);
-};
-
-const addRoundSection = (data: RoundStartData) => {
-  showRoundSection();
-  roundSectionImage.src = data.photo.src.landscape;
 };
 
 export const initialiseRoundStarted = (game: Game, socket: Socket) => {

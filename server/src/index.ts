@@ -9,6 +9,7 @@ import { pexelsGetPhotoById } from './api/controllers/pexels.controllers';
 import { ActiveGames } from './common/ActiveGames';
 import { CONNECTION } from './constants/events.constants';
 import { registerGameHandlers } from './handlers/game.handlers';
+import { registerResultHandlers } from './handlers/result.handlers';
 import { registerRoundHandlers } from './handlers/round.handlers';
 import { registerVoteHandlers } from './handlers/vote.handlers';
 
@@ -25,6 +26,7 @@ const onConnection = (socket: Socket): void => {
   registerGameHandlers(socket, io, activeGames);
   registerRoundHandlers(socket, io);
   registerVoteHandlers(socket, io);
+  registerResultHandlers(socket, io);
 };
 
 io.on(CONNECTION, onConnection);

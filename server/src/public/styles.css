@@ -451,6 +451,41 @@ html {
 }
 
 /******************************************
+* Round Caption Summary
+******************************************/
+
+.round-caption-summary {
+    display: none;
+    width: 100%;
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 4px solid black;
+    border-radius: 1rem;
+}
+
+@media only screen and (min-width: 1200px) {
+    .round-caption-summary {
+        width: 50vw;
+        position: relative;
+    }
+}
+
+.round-caption-summary__container {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.round-caption-summary__caption {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+/******************************************
 * Round Results
 ******************************************/
 

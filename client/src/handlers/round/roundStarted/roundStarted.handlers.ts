@@ -24,11 +24,11 @@ const roundSectionHostScreenMessage: HTMLElement = document.querySelector(
   '.round__hostScreenMessage',
 );
 
-const showRoundSection = (): void => {
+export const showRoundSection = (): void => {
   roundSection.style.display = 'block';
 };
 
-const hideRoundSection = (): void => {
+export const hideRoundSection = (): void => {
   roundSection.style.display = 'none';
 };
 

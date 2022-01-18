@@ -4,6 +4,7 @@ import { Game } from '../../../common/Game';
 import { ROUND_ENDED } from '../../../constants/event.constants';
 import { DEFAULT_TIMEOUT_MS } from '../../../constants/game.constants';
 import { RoundEndedData } from '../../../types/round.types';
+import { initialisePlayerRoastCaptionSummary } from '../playerRoastCaptionSummary/playerCaptionSumary.handlers';
 
 const waitForRoundEnd = async (round: number, game: Game, socket: Socket) => {
   const gameId = game.getGameId();
@@ -25,6 +26,9 @@ const waitForRoundEnd = async (round: number, game: Game, socket: Socket) => {
         round: round,
         gameState: game.getGameState(),
       };
+
+      // shows players the captions from round before voting.
+      await initialisePlayerRoastCaptionSummary(game);
 
       console.log('round ending...');
       console.log(roundEndedData);

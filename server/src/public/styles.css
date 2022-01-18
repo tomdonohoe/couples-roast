@@ -446,6 +446,10 @@ html {
     display: none;
 }
 
+.round__hostScreenMessage {
+    display: none;
+}
+
 /******************************************
 * Round Results
 ******************************************/

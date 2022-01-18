@@ -32,9 +32,9 @@ const createGame = async (
   socket: Socket,
   io: Server,
 ): Promise<void> => {
-  const { gameId, friendlyName } = data;
+  const { gameId } = data;
 
-  const player: Player = createPlayer(socket, friendlyName, true);
+  const player: Player = createPlayer(socket, 'host', true);
 
   // creates and joins room
   await socket.join(gameId);
@@ -75,11 +75,13 @@ const joinGame = async (
   const currentPlayers: Player[] = await getCurrentPlayersInGame(io, gameId);
   const host: Player = currentPlayers[0];
 
+  const currentPlayersExcludingHost = currentPlayers.filter(player => player.isHost === false);
+
   const gameJoinedData: GameJoinedData = {
     gameId: gameId,
     player: player,
     host: host,
-    currentPlayers: currentPlayers,
+    currentPlayers: currentPlayersExcludingHost,
   };
 
   const newPlayer: GameNewPlayerJoinedData = {

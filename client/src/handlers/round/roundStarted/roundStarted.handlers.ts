@@ -15,8 +15,8 @@ const roundSectionImagePhotographer: HTMLElement =
   document.querySelector('.round__imageMetaPhotographer');
 const roundSectionImagePexelsLink: HTMLAnchorElement =
   document.querySelector('.round__imageMetaPexelsLink');
-  
-
+const roundSectionCaptionForm: HTMLElement = document.querySelector('.round_captionContainer');
+const roundSectionHostScreenMessage: HTMLElement = document.querySelector('.round__hostScreenMessage');
 
 const showRoundSection = (): void => {
   roundSection.style.display = 'block';
@@ -26,12 +26,25 @@ const hideRoundSection = (): void => {
   roundSection.style.display = 'none';
 };
 
-const addRoundSection = (data: RoundStartData) => {
+const hideRoundSectionCaptionForm = (): void => {
+  roundSectionCaptionForm.style.display = 'none';
+}
+
+const showRoundSectionHostScreenMessage = (): void => {
+  roundSectionHostScreenMessage.style.display = 'block';
+}
+
+const addRoundSection = (data: RoundStartData, game: Game) => {
   showRoundSection();
   const { photo } = data;
   roundSectionImage.src = photo.src.landscape;
   roundSectionImagePhotographer.textContent = photo.photographer;
   roundSectionImagePexelsLink.href = photo.url;
+
+  if (game.getPlayer().isHost) {
+    hideRoundSectionCaptionForm();
+    showRoundSectionHostScreenMessage();
+  }
 };
 
 const onRoundStarted = (data: RoundStartData, socket: Socket, game: Game) => {
@@ -51,7 +64,7 @@ const onRoundStarted = (data: RoundStartData, socket: Socket, game: Game) => {
   removeGameStartingSection();
 
   // adds roast image to screen
-  addRoundSection(data);
+  addRoundSection(data, game);
 
   // handles submission of player roast caption to server
   initialisePlayerRoastCaption(game, data, socket);

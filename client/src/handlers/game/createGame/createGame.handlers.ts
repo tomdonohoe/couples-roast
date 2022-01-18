@@ -11,8 +11,6 @@ import { initialiseStartGame } from '../startGame/startGame.handlers';
 const createGameSection: HTMLElement = document.querySelector('.create-game');
 const createGameForm: HTMLElement =
   document.querySelector('.create-game__form');
-const createGameFormInput: HTMLInputElement =
-  document.querySelector('.create-game__name');
 
 const showCreateGameSection = (): void => {
   createGameSection.style.display = 'block';
@@ -24,19 +22,13 @@ const hideCreateGameSection = (): void => {
 
 const createGame = (event: SubmitEvent, socket: Socket): void => {
   event.preventDefault();
+  const gameId = generateGameId();
 
-  const friendlyName = createGameFormInput.value;
+  const gameCreateData: GameCreateData = {
+    gameId: gameId,
+  };
 
-  if (friendlyName) {
-    const gameId = generateGameId();
-
-    const gameCreateData: GameCreateData = {
-      gameId: gameId,
-      friendlyName: friendlyName,
-    };
-
-    socket.emit(GAME_CREATE, gameCreateData);
-  }
+  socket.emit(GAME_CREATE, gameCreateData);
 };
 
 const onGameCreated = (data: GameCreatedData, game: Game, socket: Socket) => {
@@ -44,8 +36,6 @@ const onGameCreated = (data: GameCreatedData, game: Game, socket: Socket) => {
   game.setGameId(gameId);
   game.setHost(host);
   game.setPlayer(player);
-  const { players } = game.getGameState();
-  players.push(player);
 
   console.log(game);
 

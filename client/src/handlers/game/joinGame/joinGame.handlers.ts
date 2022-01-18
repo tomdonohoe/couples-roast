@@ -66,6 +66,7 @@ const onGameJoined = (
     players.push(player);
   }
 
+  console.log('onGameJoinedState:');
   console.log(game);
 
   hideJoinGameSection();

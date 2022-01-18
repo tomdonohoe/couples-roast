@@ -27,7 +27,7 @@ const showRoundResultsSection = (): void => {
 
 const addRoundCaptionsForVoting = (data: Round): void => {
   showRoundResultsSection();
-  
+
   const { photo } = data;
   roundResultsSectionImage.src = photo.src.landscape;
   roundResultsSectionImagePhotographer.textContent = photo.photographer;

@@ -127,4 +127,7 @@ export const resetRoundResultsSection = () => {
 
   // enables showing captions to vote for
   showRoundResultsSectionVoteOptions();
+
+  // removes previous captions from DOM
+  removeRoundResultsSectionCaptions();
 };

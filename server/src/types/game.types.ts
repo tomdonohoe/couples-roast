@@ -13,7 +13,6 @@ export interface Player {
 
 export interface GameCreateData {
   gameId: string;
-  friendlyName: string;
 }
 
 export interface GameCreatedData {

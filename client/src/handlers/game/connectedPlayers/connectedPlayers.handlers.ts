@@ -2,8 +2,8 @@ import { Socket } from 'socket.io-client';
 
 import { Game } from '../../../common/Game';
 import { GAME_NEW_PLAYER_JOINED } from '../../../constants/event.constants';
-import { GameNewPlayerJoinedData, Player } from '../../../types/game.types';
 import { generateRandomHexColor } from '../../../helpers/game.helpers';
+import { GameNewPlayerJoinedData, Player } from '../../../types/game.types';
 
 const playersSection: HTMLElement = document.querySelector('.players');
 const playersSectionList: HTMLElement =
@@ -17,7 +17,7 @@ const createConnectedPlayerItem = (player: Player): void => {
   const color = generateRandomHexColor(6);
   console.log(color);
   const div = document.createElement('div');
-  div.classList.add('players__connectedPlayer')
+  div.classList.add('players__connectedPlayer');
 
   const span = document.createElement('span');
   span.classList.add('players__dot');
@@ -25,7 +25,7 @@ const createConnectedPlayerItem = (player: Player): void => {
 
   const connectedPlayer = document.createElement('span');
   connectedPlayer.classList.add('players__connectedPlayerName');
-  const connectedPlayerName = document.createTextNode(player.friendlyName)
+  const connectedPlayerName = document.createTextNode(player.friendlyName);
   connectedPlayer.appendChild(connectedPlayerName);
 
   div.appendChild(span);

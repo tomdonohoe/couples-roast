@@ -11,12 +11,18 @@ import { resetForNewRound } from '../startRound/startRound.handlers';
 const roundSection: HTMLElement = document.querySelector('.round');
 const roundSectionImage: HTMLImageElement =
   document.querySelector('.round__image');
-const roundSectionImagePhotographer: HTMLElement =
-  document.querySelector('.round__imageMetaPhotographer');
-const roundSectionImagePexelsLink: HTMLAnchorElement =
-  document.querySelector('.round__imageMetaPexelsLink');
-const roundSectionCaptionForm: HTMLElement = document.querySelector('.round_captionContainer');
-const roundSectionHostScreenMessage: HTMLElement = document.querySelector('.round__hostScreenMessage');
+const roundSectionImagePhotographer: HTMLElement = document.querySelector(
+  '.round__imageMetaPhotographer',
+);
+const roundSectionImagePexelsLink: HTMLAnchorElement = document.querySelector(
+  '.round__imageMetaPexelsLink',
+);
+const roundSectionCaptionForm: HTMLElement = document.querySelector(
+  '.round_captionContainer',
+);
+const roundSectionHostScreenMessage: HTMLElement = document.querySelector(
+  '.round__hostScreenMessage',
+);
 
 const showRoundSection = (): void => {
   roundSection.style.display = 'block';
@@ -28,11 +34,11 @@ const hideRoundSection = (): void => {
 
 const hideRoundSectionCaptionForm = (): void => {
   roundSectionCaptionForm.style.display = 'none';
-}
+};
 
 const showRoundSectionHostScreenMessage = (): void => {
   roundSectionHostScreenMessage.style.display = 'block';
-}
+};
 
 const addRoundSection = (data: RoundStartData, game: Game) => {
   showRoundSection();

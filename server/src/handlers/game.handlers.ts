@@ -75,7 +75,9 @@ const joinGame = async (
   const currentPlayers: Player[] = await getCurrentPlayersInGame(io, gameId);
   const host: Player = currentPlayers[0];
 
-  const currentPlayersExcludingHost = currentPlayers.filter(player => player.isHost === false);
+  const currentPlayersExcludingHost = currentPlayers.filter(
+    (player) => player.isHost === false,
+  );
 
   const gameJoinedData: GameJoinedData = {
     gameId: gameId,

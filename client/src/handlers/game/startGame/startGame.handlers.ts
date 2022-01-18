@@ -15,7 +15,7 @@ const startGameSectionHost: HTMLElement =
   document.querySelector('.start-game__host');
 
 const showStartGameSection = (): void => {
-    startGameSection.style.display = 'block';
+  startGameSection.style.display = 'block';
 };
 
 const hideStartGameSection = (): void => {

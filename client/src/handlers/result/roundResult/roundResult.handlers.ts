@@ -25,8 +25,8 @@ const roundLeaderboardSectionList = document.querySelector(
   '.round-leaderboard__list',
 );
 const roundLeaderboardSectionWinner: HTMLElement = document.querySelector(
-    '.round-leaderboard__winner',
-  );
+  '.round-leaderboard__winner',
+);
 
 const showRoundLeaderboardSection = (): void => {
   roundLeaderboardSection.style.display = 'block';

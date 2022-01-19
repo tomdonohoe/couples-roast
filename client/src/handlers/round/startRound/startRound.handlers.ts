@@ -34,7 +34,7 @@ const onRoundBegin = async (
   const gameState = game.getGameState();
   const { rounds } = gameState;
 
-  const res = await getPhotoById(PHOTOS[roundNumber - 1]);
+  const res = await getPhotoById(PHOTOS[game.getPhotoSet()][roundNumber - 1]);
   const photo: Photo = await res.json();
 
   const currentRound: Round = {

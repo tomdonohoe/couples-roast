@@ -13,12 +13,14 @@ export interface Player {
 
 export interface GameCreateData {
   gameId: string;
+  photoSet: number;
 }
 
 export interface GameCreatedData {
   gameId: string;
   player: Player;
   host: Player;
+  photoSet: number;
 }
 
 export interface GameStartData {

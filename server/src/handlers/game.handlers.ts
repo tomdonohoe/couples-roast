@@ -43,6 +43,7 @@ const createGame = async (
     gameId: gameId,
     player: player,
     host: player,
+    photoSet: data.photoSet,
   };
 
   io.to(player.clientId).emit(GAME_CREATED, gameCreatedResponse);

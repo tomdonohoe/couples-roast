@@ -5,6 +5,7 @@ export class Game {
   private player: Player;
   private host: Player;
   private gameState: GameState;
+  private photoSet: number;
 
   constructor() {
     this.gameState = {
@@ -43,6 +44,14 @@ export class Game {
 
   public setGameState(gameState: GameState): void {
     this.gameState = gameState;
+  }
+
+  public getPhotoSet(): number {
+    return this.photoSet;
+  }
+
+  public setPhotoSet(photoSet: number): void {
+    this.photoSet = photoSet;
   }
 
   public waitUntil(condition: () => boolean, timeout: number) {

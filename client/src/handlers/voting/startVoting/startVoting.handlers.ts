@@ -25,23 +25,20 @@ const showRoundResultsSection = (): void => {
   roundResultsSection.style.display = 'block';
 };
 
-const addRoundCaptionsForVoting = (data: Round): void => {
+const addRoundCaptionsForVoting = (data: Round, game: Game): void => {
   showRoundResultsSection();
 
   const { photo } = data;
   roundResultsSectionImage.src = photo.src.landscape;
   roundResultsSectionImagePhotographer.textContent = photo.photographer;
   roundResultsSectionImagePexelsLink.href = photo.url;
-  const captions = data.captions;
 
   // disable voting for yourself:
-  // const captions = roundData.captions.filter(caption => caption.player.clientId !== game.playerIdentity.clientId);
+  const captions = data.captions.filter(caption => caption.player.clientId !== game.getPlayer().clientId);
 
   for (const caption of captions) {
     const playerCaption = document.createElement('div');
-    const text = document.createTextNode(
-      `${caption.player.friendlyName}: ${caption.caption}`,
-    );
+    const text = document.createTextNode(caption.caption);
     playerCaption.appendChild(text);
 
     playerCaption.setAttribute('data-client-id', caption.player.clientId);
@@ -63,7 +60,7 @@ const onStartVoting = (data: RoundEndedData, socket: Socket, game: Game) => {
 
   // add player captions to screen for voting
   const currentRound = game.getGameState().rounds[round - 1];
-  addRoundCaptionsForVoting(currentRound);
+  addRoundCaptionsForVoting(currentRound, game);
 
   // handles sending votes to server
   initialisePlayerVoteSubmission(currentRound, game, socket);

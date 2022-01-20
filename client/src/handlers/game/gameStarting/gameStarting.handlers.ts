@@ -31,7 +31,7 @@ const onGameStarting = async (game: Game, socket: Socket): Promise<void> => {
 
   if (player.isHost) {
     // host wait 30 seconds then trigger round start
-    await sleepForSeconds(3);
+    await sleepForSeconds(30);
     const beginRoundsData: BeginRoundsData = {
       gameId: gameId,
       host: player,

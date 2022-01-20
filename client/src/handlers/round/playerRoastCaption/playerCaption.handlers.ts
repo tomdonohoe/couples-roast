@@ -44,18 +44,16 @@ const submitRoastCaption = (event: SubmitEvent, socket: Socket, game: Game) => {
   const gameId = game.getGameId();
   const { rounds } = game.getGameState();
   const currentRound = rounds[rounds.length - 1];
-  const roastCaption = roundSectionFormInput.value;
+  const roastCaption = roundSectionFormInput.value ? roundSectionFormInput.value : 'nothing submitted....';
 
-  if (roastCaption) {
-    const playerCaption: RoundPlayerCaption = {
-      gameId: gameId,
-      round: currentRound.number,
-      player: game.getPlayer(),
-      host: game.getHost(),
-      caption: roastCaption,
-    };
-    socket.emit(ROUND_PLAYER_CAPTION, playerCaption);
-  }
+  const playerCaption: RoundPlayerCaption = {
+    gameId: gameId,
+    round: currentRound.number,
+    player: game.getPlayer(),
+    host: game.getHost(),
+    caption: roastCaption,
+  };
+  socket.emit(ROUND_PLAYER_CAPTION, playerCaption);
 
   roundSectionFormInput.value = '';
 
